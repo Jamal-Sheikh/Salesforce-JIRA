@@ -1,82 +1,73 @@
-# Human Resource Management (HRM) System - README
-
 ## Overview
-The Human Resource Management (HRM) System is a Salesforce-based application designed to streamline and automate HR processes. This system supports employee management, leave tracking, onboarding, login management, skills and certifications, and provides reporting and dashboard functionalities for administrators and finance managers.
+The Salesforce JIRA Integration project enables seamless synchronization of projects and issues between JIRA and Salesforce. This integration leverages Salesforce Flows, Apex, APIs, and webhooks to ensure real-time data synchronization. It helps teams improve collaboration by consolidating project management data from JIRA into Salesforce custom objects.
 
 ## Features
 
-### **1. Employee Management**
-- Maintain detailed employee records including personal information, contact details, and employment history.
-- Track employee roles, departments, and reporting structures.
+### **1. Synchronization of Projects and Issues**
+- Sync JIRA projects to custom objects in Salesforce.
+- Sync JIRA issues, including status, priority, and assignees, to Salesforce.
+- Bi-directional updates between Salesforce and JIRA.
 
-### **2. Leave Management**
-- **Leave Requests:** Employees can submit leave requests directly through the portal.
-- **Leave Approvals:** Automated workflows for leave request approvals.
-- **Leave Quotas:** Assign and manage leave quotas for each employee.
-- **Leave Tracking:** Real-time tracking of leave balances.
+### **2. Real-Time Updates**
+- Webhooks ensure instant updates to Salesforce when changes occur in JIRA.
+- Trigger Salesforce workflows or notifications when JIRA data changes.
 
-### **3. Onboarding**
-- Automates onboarding processes for new hires.
-- Tracks completion of onboarding tasks, including document submissions and training schedules.
+### **3. Flexible Automation**
+- Use Salesforce Flows to configure and automate synchronization logic.
+- Customizable data mapping between JIRA fields and Salesforce custom object fields.
 
-  ![HRM Project](https://github.com/user-attachments/assets/7aefbd8a-98ab-4bf4-922c-09e858abd095)
-
-
-### **4. Login Management**
-- Secure login system integrated with Salesforce authentication.
-- Role-based access to ensure proper authorization.
-- Single Sign-On (SSO) capability for seamless user experience.
-
-### **5. Skills and Certifications**
-- Maintain a repository of employee skills and certifications.
-- Track expiration dates and send renewal reminders.
-- Generate skill-based reports to identify training needs.
-
-### **6. Reports and Dashboards**
-#### **Admin Dashboards**
-- Overview of employee records and activities.
-- Key HR metrics such as employee turnover, leave statistics, and onboarding status.
-
-#### **Finance Manager Dashboards**
-- Insights into leave payouts, salary adjustments, and HR-related expenses.
-- Custom reports on financial impacts of HR activities.
-
-## Next Steps
-
-### **How Do You Plan to Deploy Your Changes?**
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
-
-### **Configure Your HRM Project**
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
+### **4. Robust API Integration**
+- Leverages JIRA REST APIs for fetching and updating data.
+- Apex classes handle API calls and manage error handling for seamless operations.
 
 ## Technical Implementation
 
-### **Data Model**
-Custom objects and fields were created to support HR operations:
-- **Employee:** Stores employee details.
-- **Leave:** Tracks leave requests and statuses.
-- **Onboarding Tasks:** Logs onboarding-related activities.
-- **Skills & Certifications:** Manages skill records and certification renewals.
+### **Custom Objects**
+- **JIRA Project:** Stores details of JIRA projects, such as name, key, and description.
+- **JIRA Issue:** Tracks individual issues with fields such as summary, status, priority, and assignee.
 
-### **Automation**
-- **Workflows and Flows:** Automates approvals, reminders, and notifications.
-- **Validation Rules:** Ensures data integrity and compliance with HR policies.
+### **Flows**
+- Automates the creation and updating of JIRA projects and issues in Salesforce.
+- Configurable for custom business requirements, such as specific field mappings.
 
-### **Integrations**
-- **External Systems:** Integrates with payroll and training platforms.
-- **Email Notifications:** Automated communication for approvals and updates.
+### **Apex Classes**
+- Handles interaction with the JIRA REST API.
+- Manages API authentication and data transformation.
+- Includes retry logic for failed API requests
+
+![JIRA](https://github.com/user-attachments/assets/2c48b054-4e64-43d1-9c1e-3b4021a5c82a)
+
+
+### **Webhooks**
+- Listens to events in JIRA (e.g., issue updates, status changes) and triggers updates in Salesforce.
+- Enables real-time data consistency between systems.
+
+  ![JIRA Screen Flow](https://github.com/user-attachments/assets/6e95f08f-0f4b-42b4-863e-b4838576c873)
+
 
 ## Deployment Instructions
+
+### Prerequisites
+- A Salesforce org with API access enabled.
+- A JIRA instance with REST API permissions.
+
+### Steps
 1. **Clone Repository:** Download the project files from GitHub.
-2. **Deploy Metadata:** Use Salesforce CLI or an IDE to deploy metadata to your Salesforce org.
-3. **Configure Profiles:** Assign appropriate profiles and roles to users.
-4. **Activate Automations:** Enable relevant workflows and flows.
-5. **Test Functionality:** Validate all features in a sandbox environment.
+2. **Deploy Metadata:** Use Salesforce CLI or an IDE to deploy metadata components to your Salesforce org.
+3. **Configure JIRA Webhooks:**
+   - In JIRA, create webhooks for the desired events (e.g., issue updates, project changes).
+   - Point the webhook URLs to the Salesforce endpoints.
+4. **Set Up API Credentials:**
+   - Generate API keys or tokens in JIRA for Salesforce to use.
+   - Store credentials securely in Salesforce (e.g., Custom Metadata or Named Credentials).
+5. **Activate Automations:**
+   - Enable relevant Flows and ensure Apex triggers are active.
+6. **Test Integration:** Validate synchronization of projects and issues in a sandbox environment.
 
 ## Contribution Guidelines
 - Fork the repository and create a new branch for each feature or bug fix.
-- Follow naming conventions for branches and commits.
-- Submit a pull request with detailed descriptions of changes.
+- Adhere to coding standards and naming conventions.
+- Include detailed descriptions and test cases in your pull requests.
 
 ## Contact
 For inquiries or support, please contact:
@@ -85,29 +76,5 @@ For inquiries or support, please contact:
 Email: [jamal@elevateitstudio.pk](mailto:jamal@elevateitstudio.pk)  
 
 ---
-This HRM System is a scalable and customizable solution tailored for organizations seeking efficient HR operations.
+This integration simplifies project management by combining the capabilities of Salesforce and JIRA, providing teams with a unified platform to manage their tasks efficiently.
 
-
-
-
-
-
-
-# Salesforce DX Project: Next Steps
-
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
-
-## How Do You Plan to Deploy Your Changes?
-
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
-
-## Configure Your Salesforce DX Project
-
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
-
-## Read All About It
-
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
